@@ -151,6 +151,8 @@ class MySqliStatementExtended extends \Mysqli_Stmt {
             @call_user_func_array(array($this, 'bind_param'), $tmp);
         }
 
+        $this->getLink()->setLatestStmt($this);
+
         @parent::execute();
 
         $end                    =    microtime(true);

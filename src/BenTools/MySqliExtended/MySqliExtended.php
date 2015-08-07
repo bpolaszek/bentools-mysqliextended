@@ -7,6 +7,11 @@ mysqli_report(MYSQLI_REPORT_ERROR);
 class MySqliExtended extends \Mysqli {
 
     /**
+     * @var MySqliStatementExtended
+     */
+    protected       $latestStmt;
+
+    /**
      * @param string $query
      * @param array $sqlValues
      * @return bool|MySqliStatementExtended
@@ -94,6 +99,22 @@ class MySqliExtended extends \Mysqli {
      */
     public function __invoke($query, $sqlValues = array()) {
         return $this->prepare($query, $sqlValues);
+    }
+
+    /**
+     * @return MySqliStatementExtended
+     */
+    public function getLatestStmt() {
+        return $this->latestStmt;
+    }
+
+    /**
+     * @param MySqliStatementExtended $latestStmt
+     * @return $this - Provides Fluent Interface
+     */
+    public function setLatestStmt($latestStmt) {
+        $this->latestStmt = $latestStmt;
+        return $this;
     }
 
 
