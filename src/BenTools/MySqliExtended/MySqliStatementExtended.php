@@ -89,7 +89,7 @@ class MySqliStatementExtended extends \Mysqli_Stmt {
      */
     public function sqlRow($sqlValues = array()) {
         $this->sql($sqlValues);
-        return $this->result ? $this->result->fetch_array(MYSQLI_ASSOC) : array();
+        return $this->result instanceof \mysqli_result && $this->result->num_rows > 0 ? $this->result->fetch_array(MYSQLI_ASSOC) : array();
     }
 
     /**
