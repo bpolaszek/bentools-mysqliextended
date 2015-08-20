@@ -206,6 +206,8 @@ class MySqliStatementExtended extends \Mysqli_Stmt {
                     $this->boundValues[] = $boundValues[$placeholder];
                     $this->boundValuesTypes[] = $boundValuesTypes[$placeholder];
                 }
+                else
+                    throw MysqliException::factory("Missing placeholder " . $placeholder, 0, null, $this);
             }
         }
         else {

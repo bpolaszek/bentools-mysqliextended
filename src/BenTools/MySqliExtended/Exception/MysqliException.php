@@ -37,6 +37,9 @@ class MysqliException extends \Mysqli_Sql_Exception {
         elseif (strpos("No data supplied for parameters in prepared statement", $message) !== false)
             return new BoundVariablesException($message, $code, $previous, $stmt);
 
+        elseif (strpos("Missing placeholder", $message) !== false)
+            return new BoundVariablesException($message, $code, $previous, $stmt);
+
         else
             return new MySqliStmtException($message, $code, $previous, $stmt);
     }
