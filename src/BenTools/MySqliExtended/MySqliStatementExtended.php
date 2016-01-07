@@ -247,7 +247,7 @@ class MySqliStatementExtended extends \Mysqli_Stmt {
         $debuggedValues     =   array_map(array($this, 'debugValue'), array_keys($this->boundValues));
 
         if (count($debuggedValues) === $nbPlaceHolders)
-            $this->preview  =    vsprintf(str_replace('?', '%s', $this->preview), $debuggedValues);
+            $this->preview  =    vsprintf(str_replace('?', '%s', str_replace('%', '%%', $this->preview)), $debuggedValues);
         else
             throw MysqliException::factory("Number of variables doesn't match number of parameters in prepared statement", 0, null, $this);
 
