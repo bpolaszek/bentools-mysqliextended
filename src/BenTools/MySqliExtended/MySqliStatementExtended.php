@@ -172,17 +172,28 @@ class MySqliStatementExtended extends \Mysqli_Stmt {
     }
 
     /**
+     * Reset bound values
+     * @return $this
+     */
+    public function reset() {
+        $this->boundValues      =   array();
+        $this->boundValuesTypes =   array();
+        return $this;
+    }
+
+    /**
      * Binds several values at once
      * @param array $sqlValues
      * @return $this
      */
     public function bindValues($sqlValues = array()) {
 
-        $this->boundValues      =   array();
-        $this->boundValuesTypes =   array();
-
-        if (empty($sqlValues))
+        if (empty($sqlValues)) {
             return $this;
+        }
+        else {
+            $this->reset();
+        }
 
         if (!is_array($sqlValues))
             $sqlValues          =    array($sqlValues);
