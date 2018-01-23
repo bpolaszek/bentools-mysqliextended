@@ -1,3 +1,5 @@
+**This package is abandonned. Consider upgrading to [bentools/simple-dbal](https://github.com/bpolaszek/simple-dbal), which can handle PDO and Mysqli connections as well, and favors composition over inheritance.**
+
 MySqli Extended
 ===============
 
